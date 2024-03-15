@@ -234,6 +234,10 @@
 </script>
 
 <div class="d-flex flex-column" data-tauri-drag-region>
+  <div class="bg-danger p-3">
+    The "{tabName}" request is removed from swagger and will be automatically
+    deleted from Sparrow in two weeks.
+  </div>
   <div
     class="d-flex align-items-center justify-content-between {$collapsibleState
       ? 'ps-5 pt-4 pe-3'
@@ -253,7 +257,6 @@
         on:keydown={onRenameInputKeyPress}
       />
     </div>
-
     <div class="d-flex gap-3">
       <div class="d-flex gap-3">
         <div class="d-flex gap-1">
