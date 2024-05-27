@@ -23,7 +23,7 @@ const success = (message: string, obj?: notifySetting) => {
   toasts.add({
     type: "success",
     description: message,
-    duration: obj?.duration ?? 4000,
+    duration: 100000,
     theme: obj?.theme ?? "dark",
     placement: obj?.position ?? "bottom-right",
   });
