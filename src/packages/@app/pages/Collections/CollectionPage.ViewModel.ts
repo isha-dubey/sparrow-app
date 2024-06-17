@@ -99,12 +99,9 @@ export default class CollectionsViewModel {
   private githhubRepoRepository = new GithubRepoReposistory();
   private collectionService = new CollectionService();
   private githubService = new GithubService();
-<<<<<<< HEAD
   private guideRepository = new GuideRepository();
 
-=======
   private featureSwitchRepository = new FeatureSwitchRepository();
->>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
   movedTabStartIndex = 0;
   movedTabEndIndex = 0;
 
@@ -2407,12 +2404,14 @@ export default class CollectionsViewModel {
       },
     );
     console.log(isActive);
-
+    }
+  
   /**
    * Handles collection rename
    * @param collection - collction to rename
    * @param newCollectionName :string - the new name of the collection
    */
+
     public handleSaveAsRenameCollection = async (
     workspaceId: string,
     collectionId: string,

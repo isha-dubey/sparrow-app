@@ -77,11 +77,8 @@ import {
 } from "@common/types/workspace";
 import { notifications } from "@library/ui/toast/Toast";
 import { RequestTabAdapter } from "@app/adapter/request-tab";
-<<<<<<< HEAD
 import { GuideRepository } from "@app/repositories/guide.repository";
-=======
 import { CollectionService } from "@app/services/collection.service";
->>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
 
 class RestExplorerViewModel
   implements
