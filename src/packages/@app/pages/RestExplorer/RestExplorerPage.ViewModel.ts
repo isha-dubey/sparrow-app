@@ -77,7 +77,11 @@ import {
 } from "@common/types/workspace";
 import { notifications } from "@library/ui/toast/Toast";
 import { RequestTabAdapter } from "@app/adapter/request-tab";
+<<<<<<< HEAD
 import { GuideRepository } from "@app/repositories/guide.repository";
+=======
+import { CollectionService } from "@app/services/collection.service";
+>>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
 
 class RestExplorerViewModel
   implements
@@ -121,6 +125,7 @@ class RestExplorerViewModel
    * Service
    */
   private environmentService = new EnvironmentService();
+  private collectionService = new CollectionService();
   /**
    * Utils
    */
@@ -1093,6 +1098,92 @@ class RestExplorerViewModel
      },
    );
  };
+
+  /**
+   * Handles collection rename
+   * @param collection - collction to rename
+   * @param newCollectionName :string - the new name of the collection
+   */
+  public handleRenameCollection = async (
+    workspaceId: string,
+    collectionId: string,
+    newCollectionName: string,
+  ) => {
+    if (newCollectionName) {
+      const response = await this.collectionService.updateCollectionData(
+        collectionId,
+        workspaceId,
+        { name: newCollectionName },
+      );
+      if (response.isSuccessful) {
+        this.collectionRepository.updateCollection(
+          collectionId,
+          response.data.data,
+        );
+        notifications.success("Collection renamed successfully!");
+      } else if (response.message === "Network Error") {
+        notifications.error(response.message);
+      } else {
+        notifications.error("Failed to rename collection!");
+      }
+      return response;
+    }
+  };
+
+  /**
+   * Handle folder rename
+   * @param workspaceId - workspace id of the folder
+   * @param collectionId - collection id of the folder
+   * @param folderId  - folder id to be targetted
+   * @param newFolderName - new folder name
+   * @returns
+   */
+  public handleRenameFolder = async (
+    workspaceId: string,
+    collectionId: string,
+    folderId: string,
+    newFolderName: string,
+  ) => {
+    const collection =
+      await this.collectionRepository.readCollection(collectionId);
+    const explorer =
+      await this.collectionRepository.readRequestOrFolderInCollection(
+        collectionId,
+        folderId,
+      );
+    if (newFolderName) {
+      let userSource = {};
+      if (collection.activeSync && explorer?.source === "USER") {
+        userSource = {
+          currentBranch: collection.currentBranch
+            ? collection.currentBranch
+            : collection.primaryBranch,
+          source: "USER",
+        };
+      }
+      const response = await this.collectionService.updateFolderInCollection(
+        workspaceId,
+        collectionId,
+        folderId,
+        {
+          ...userSource,
+          name: newFolderName,
+        },
+      );
+      if (response.isSuccessful) {
+        this.collectionRepository.updateRequestOrFolderInCollection(
+          collectionId,
+          folderId,
+          response.data.data,
+        );
+        notifications.success("Folder renamed successfully!");
+      }
+      else{
+        notifications.error("Failed to rename folder!");
+      }
+      return response;
+    }
+  };
 }
 
 export default RestExplorerViewModel;

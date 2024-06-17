@@ -26,7 +26,10 @@
   } from "$lib/utils/helpers/navigation";
   import Button from "@library/ui/button/Button.svelte";
   import { requestSplitterDirection } from "@workspaces/features/rest-explorer/store";
+<<<<<<< HEAD
   import { HelpIcon } from "$lib/assets/app.asset";
+=======
+>>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
 
   // ------ Props ------
   /**
@@ -72,9 +75,12 @@
     }
   }
 
+<<<<<<< HEAD
   export let onUpdateCollectionGuide;
   export let onFetchCollectionGuide;
 
+=======
+>>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
   let tabWidth: number = 182;
   let scrolable: boolean = false;
   let scrollerParent: number;

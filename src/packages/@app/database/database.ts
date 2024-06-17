@@ -41,9 +41,13 @@ import {
   windowSettingsSchema,
   type WindowSettingsDocType,
 } from "@app/models/window-settings-model";
+import {
+  featureSwitchSchema,
+  type FeatureSwitchDocType,
+} from "@app/models/feature-switch.model";
 import { guideSchema, type GuideDocType } from "@app/models/guide.model";
-import { RxDBDevModePlugin } from "rxdb/plugins/dev-mode";
-addRxPlugin(RxDBDevModePlugin);
+// import { RxDBDevModePlugin } from "rxdb/plugins/dev-mode";
+// addRxPlugin(RxDBDevModePlugin);
 
 addRxPlugin(RxDBQueryBuilderPlugin);
 addRxPlugin(RxDBMigrationPlugin);
@@ -59,7 +63,11 @@ export type EnvironmentDocument = RxDocument<EnvironmentDocType>;
 export type EnvironmentTabContainer = RxCollection<EnvironmentTabDocType>;
 export type EnvironmentTabDocument = RxDocument<EnvironmentTabDocType>;
 export type GithubDocument = RxDocument<GithubRepoDocType>;
+<<<<<<< HEAD
 export type GuideDocumnet = RxDocument<GuideDocType>;
+=======
+export type FeatureDocument = RxDocument<FeatureSwitchDocType>;
+>>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
 // collate all the Rx collections
 
 export type TabDocument = RxDocument<TabDocType>;
@@ -241,8 +249,13 @@ export class RxDB {
       githubrepo: {
         schema: githubRepoSchema,
       },
+<<<<<<< HEAD
       guide: {
         schema: guideSchema,
+=======
+      featureswitch: {
+        schema: featureSwitchSchema,
+>>>>>>> 58869b839a70bb3aebbe2b90b38dcf21516e7bbe
       },
     });
     return { rxdb: this.rxdb };
