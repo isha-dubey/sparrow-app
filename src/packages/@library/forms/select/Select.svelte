@@ -440,7 +440,7 @@
           </div>
         {:else}
           <span
-            class="ellipsis me-3 {selectedRequest?.default
+            class="ellipsis {selectedRequest?.default
               ? 'text-textColor'
               : getTextColor(selectedRequest?.color)}"
             style="font-weight: {headerFontWeight}; font-size: {headerFontSize}; {disabled ||

@@ -782,6 +782,29 @@ span {
   text-overflow: ellipsis;
 }
 
+.ProseMirror {
+  height: 182px !important;
+  // border: 1px solid !important;
+  outline: none !important;
+  overflow-y: scroll;
+  line-height: 20px;
+  padding: 10px;
+  padding-bottom: 0px;
+ 
+}
+
+// code {
+//   background-color: aqua !important;
+// }
+
+.ProseMirror , p {
+  margin: 0;
+  padding: 0;
+  line-height: 20px;
+}
+.ProseMirror::-webkit-scrollbar-button {
+  display: none;
+}
 
 /* Customize scrollbar for WebKit browsers */
 
