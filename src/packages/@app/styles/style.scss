@@ -755,6 +755,10 @@ span {
   word-wrap: break-word;
 }
 
+.affine-format-bar-widget {
+  gap: 0px !important;
+}
+
 .border-error {
   border-color: $sparrow-error;
   border-width: 3px;
@@ -781,6 +785,7 @@ span {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .affine-paragraph-block-container{
   color: white;
 }
@@ -796,11 +801,11 @@ span {
  
 }
 
-// code {
-//   background-color: aqua !important;
-// }
+.ProseMirror{
 
-.ProseMirror , p {
+}
+
+.ProseMirror  {
   margin: 0;
   padding: 0;
   line-height: 20px;

@@ -8,10 +8,14 @@
     PageEditor,
     EdgelessEditor,
   } from "@blocksuite/presets";
-  import { Doc, Schema, DocCollection } from "@blocksuite/store";
+  import { Doc, Schema, DocCollection, Text, Job } from "@blocksuite/store";
   import { AffineSchemas } from "@blocksuite/blocks";
-  import "@blocksuite/presets/themes/affine.css";
-  // import "@blocksuite/presets/themes/edgeless.css";
+  // import { Html } from "@blocksuite/blocks";
+  import { HtmlAdapter } from "@blocksuite/blocks";
+  // import "@blocksuite/presets/themes/affine.css";
+  import { editor } from "monaco-editor";
+  import "@app/styles/style.css";
+  import TextButton from "$lib/components/buttons/TextButton.svelte";
 
   export let onUpdateRequestDescription;
   export let requestStateDoc;
@@ -32,13 +36,44 @@
     const doc = collection.createDoc({ id: "page1" });
     doc.load(() => {
       const pageBlockId = doc.addBlock("affine:page", {});
-      doc.addBlock("affine:surface", {}, pageBlockId);
+      const surfaceId = doc.addBlock("affine:code", {}, pageBlockId);
       const noteId = doc.addBlock("affine:note", {}, pageBlockId);
-      doc.addBlock("affine:paragraph", {}, noteId);
+      // doc.addBlock(
+      //   "affine:paragraph",
+      //   {
+      //     text: new Text("isha"),
+      //   },
+      //   surfaceId,
+      // );
+      doc.addBlock(
+        "affine:embed-html",
+        { html: "<h1>hello world</h1>" },
+        surfaceId,
+      );
     });
 
     const editor = new PageEditor();
     editor.doc = doc;
+    console.log(doc);
+
+    // editor.innerHTML = `<div>helloo</div>`;
+    // const paras = doc.getBlockByFlavour("affine:paragraph");
+    // const htmlContent = `<div>helloo</div>`;
+
+    // console.log("p", paras);
+    // const para = paras[0];
+    // const text = new Html(htmlContent);
+    // const adapt = new HtmlAdapter(collection);
+    // const job = new Job({ collection });
+    // const modelB = doc.getBlockById(htmlId);
+    // doc.updateBlock(modelB, {type: 'h1'});
+
+    // doc.updateBlock(para, { text: new Text("<p>text</p>") });
+    // console.log(doc);
+    // const adapt = new HtmlAdapter(job);
+    // adapt.fromDoc(doc);
+    // console.log("para----------->", paras);
+    // doc.
 
     return { editor, collection };
   }
@@ -47,23 +82,15 @@
   let editorContainer: HTMLDivElement;
 
   onMount(() => {
-    console.log("as", appState);
     appState.subscribe(({ editor }) => {
-      console.log("dfgh", editor);
       if (editorContainer) {
         editorContainer.appendChild(editor);
       }
     });
   });
 
-  afterUpdate(() => {
-    console.log("asf");
-  });
-
   onDestroy(() => {
-    appState.subscribe(({ editor }) => {
-      console.log("onDestroyedvalued---------", editor);
-    });
+    appState.subscribe(({ editor }) => {});
   });
 </script>
 
@@ -73,16 +100,21 @@
   </div>
 
   <div
-    on:blur={() => {
-      if (textareaRef) {
-        onUpdateRequestDescription(description);
-        notifications.success("Documentation updated");
-      }
-    }}
+    on:keypress={(e) => {}}
     bind:this={editorContainer}
     class="editor-container"
   ></div>
 </div>
 
+<!-- on:blur={() => {
+  if (textareaRef) {
+    onUpdateRequestDescription(description);
+    notifications.success("Documentation updated");
+  }
+}} -->
+
 <style>
+  :global(.affine-format-bar-widget) {
+    gap: 0px !important;
+  }
 </style>
