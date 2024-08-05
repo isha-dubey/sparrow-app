@@ -3,13 +3,16 @@
   import { afterUpdate, onMount, onDestroy } from "svelte";
   import { getContext } from "svelte";
   import { writable, type Writable } from "svelte/store";
+  // import {AffineSchemas{}}
   import {
     AffineEditorContainer,
     PageEditor,
     EdgelessEditor,
   } from "@blocksuite/presets";
   import { Doc, Schema, DocCollection, Text, Job } from "@blocksuite/store";
-  import { AffineSchemas } from "@blocksuite/blocks";
+  import { AffineSchemas } from "@isha-dubey/blocksuite-sparrow";
+  import {} from "@isha-dubey/blocksuite-sparrow/";
+  // import { AffineSchemas }
   // import { Html } from "@blocksuite/blocks";
   import { HtmlAdapter } from "@blocksuite/blocks";
   // import "@blocksuite/presets/themes/affine.css";
@@ -38,13 +41,13 @@
       const pageBlockId = doc.addBlock("affine:page", {});
       const surfaceId = doc.addBlock("affine:code", {}, pageBlockId);
       const noteId = doc.addBlock("affine:note", {}, pageBlockId);
-      // doc.addBlock(
-      //   "affine:paragraph",
-      //   {
-      //     text: new Text("isha"),
-      //   },
-      //   surfaceId,
-      // );
+      doc.addBlock(
+        "affine:paragraph",
+        {
+          text: new Text("isha"),
+        },
+        surfaceId,
+      );
       doc.addBlock(
         "affine:embed-html",
         { html: "<h1>hello world</h1>" },
@@ -88,10 +91,6 @@
       }
     });
   });
-
-  onDestroy(() => {
-    appState.subscribe(({ editor }) => {});
-  });
 </script>
 
 <div class="d-flex flex-column text-fs-14" style="gap: 8px;">
@@ -99,11 +98,7 @@
     <div style="font-weight: 600;">Documentation</div>
   </div>
 
-  <div
-    on:keypress={(e) => {}}
-    bind:this={editorContainer}
-    class="editor-container"
-  ></div>
+  <div bind:this={editorContainer} class="editor-container"></div>
 </div>
 
 <!-- on:blur={() => {
