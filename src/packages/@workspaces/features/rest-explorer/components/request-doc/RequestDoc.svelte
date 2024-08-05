@@ -10,9 +10,9 @@
     EdgelessEditor,
   } from "@blocksuite/presets";
   import { Doc, Schema, DocCollection, Text, Job } from "@blocksuite/store";
-  import { AffineSchemas } from "@isha-dubey/blocksuite-sparrow";
-  import {} from "@isha-dubey/blocksuite-sparrow/";
-  // import { AffineSchemas }
+  // import { AffineSchemas } from "@isha-dubey/blocksuite-sparrow";
+  // import {} from "@isha-dubey/blocksuite-sparrow/packages/blocks";
+  import { AffineSchemas } from "@blocksuite/blocks";
   // import { Html } from "@blocksuite/blocks";
   import { HtmlAdapter } from "@blocksuite/blocks";
   // import "@blocksuite/presets/themes/affine.css";
